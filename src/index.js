@@ -10,6 +10,9 @@ import { HorizontalBlurShader } from 'three/examples/jsm/shaders/HorizontalBlurS
 import { VerticalBlurShader } from 'three/examples/jsm/shaders/VerticalBlurShader.js';
 import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass.js';
 
+import './webpd-latest.min.js';
+import ambientPatch from './pd/ambient.pd';
+
 // Feature generation
 let features = {
   Palette: FXRand.choice(['Black&White', 'Mono', 'Analogous', 'Complementary']),
@@ -193,3 +196,7 @@ link.click();
 
 // Trigger capture
 fxpreview();
+
+const context = new AudioContext();
+var patch;
+patch = Pd.loadPatch(ambientPatch);

@@ -21,6 +21,13 @@ module.exports = {
         test: /\.(glsl|vs|fs|vert|frag)$/i, 
         exclude: /node_modules/, 
         use: 'raw-loader',
+      },
+
+      // Loading PD files
+      {
+        test: /\.(pd)$/i, 
+        exclude: /node_modules/, 
+        use: 'raw-loader',
       }
       // end :)
     ],
