@@ -192,17 +192,31 @@ link.href = imgData;
 link.target = "_blank";
 link.click();
 */
+// const loader = new THREE.TextureLoader();
+// loader.load('https://images.pexels.com/photos/1205301/pexels-photo-1205301.jpeg' , function(texture)
+// {
+//   scene.background = texture;  
+// });
 
 // Trigger capture
 fxpreview();
+
+var speed = 0;
+function get_speed(){
+  speed += 0.02;
+  //console.log((Math.sin(speed) + 1))
+  return ((Math.sin(speed) + 1.5)*0.01);
+}
 
 function animate() {
   // setInterval(() => {
     
   // }, 100);
-  plane.rotation.x -= 0.01;
-    plane.rotation.y -= 0.02;
-    plane.rotation.z -= 0.03;
+  //plane.rotation.x -= 0.02;
+    
+  
+  plane.rotation.y += get_speed();
+  plane.rotation.z += 0.02;
     requestAnimationFrame(animate);
   composer.render();
 }

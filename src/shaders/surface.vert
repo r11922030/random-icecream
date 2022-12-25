@@ -74,7 +74,7 @@ float fBm( vec2 p, int octaves, float lacunarity, float gain ) {
 void main() {
     vec3 p = position;
     vec3 scale = vec3(1.0, 1.0, 1.0);
-    if ( p.x * p.x + p.y * p.y < 255.9 * 255.9) {
+    if ( p.x * p.x + p.y * p.y < 255.99 * 255.99) {
       float f = fBm( uv * uNoiseFrequency.x, uOctaves.x, uLacunarity.x, uGain.x );
 
       if ( uSecondLayer )
@@ -82,8 +82,7 @@ void main() {
 
       if ( uThirdLayer )
         f = fBm( vec2( uv.x * f, uv.y * f ) * uNoiseFrequency.z + vec2( 1.4, 3.221 ), uOctaves.z, uLacunarity.z, uGain.z );
-
-        p.z = f * uHeight;
+        p.z = f * uHeight + p.z;
         // scale = vec3(0.005*uHeight, 0.005*uHeight, 0.005*uHeight);
     }
     vVertex = ( modelViewMatrix * vec4( p, 1. ) ).xyz;
