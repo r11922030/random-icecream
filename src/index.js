@@ -10,6 +10,9 @@ import { HorizontalBlurShader } from 'three/examples/jsm/shaders/HorizontalBlurS
 import { VerticalBlurShader } from 'three/examples/jsm/shaders/VerticalBlurShader.js';
 import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass.js';
 
+import './webpd-latest.min.js';
+import ambientPatch from './pd/ambient.pd';
+
 // Feature generation
 let features = {
   Palette: FXRand.choice(['Black&White', 'Mono', 'Analogous', 'Complementary']),
@@ -51,9 +54,11 @@ camera.position.z = 256;
 camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 // Plane geometry
-const planeSize = 512;
+const planeSize = 256;
 const planeSegments = 400;
-const geometry = new THREE.PlaneBufferGeometry(planeSize, planeSize, planeSegments, planeSegments);
+// const geometry = new THREE.PlaneBufferGeometry(planeSize, planeSize, planeSegments, planeSegments);
+const geometry = new THREE.SphereGeometry(planeSize, planeSegments, planeSegments);
+// const geometry = new THREE.CircleBufferGeometry(planeSize, planeSegments)
 
 // Surface color
 let surfaceColor = hsl2rgb(colors[1][0], colors[1][1], colors[1][2]);
@@ -190,6 +195,47 @@ link.href = imgData;
 link.target = "_blank";
 link.click();
 */
+// const loader = new THREE.TextureLoader();
+// loader.load('https://images.pexels.com/photos/1205301/pexels-photo-1205301.jpeg' , function(texture)
+// {
+//   scene.background = texture;  
+// });
 
 // Trigger capture
 fxpreview();
+
+// Pd's ambient music part
+function initializeAmbient() {
+  const context = new AudioContext();
+  const patch = Pd.loadPatch(ambientPatch);
+
+  Pd.send('initialize', ['bang']);
+  Pd.send('chord', [FXRand.int(0, 1)]);
+  Pd.send('p1', [FXRand.int(0, 1)]);
+  Pd.send('p2', [FXRand.int(0, 1)]);
+  Pd.send('start', ['bang']);
+}
+
+initializeAmbient();
+
+var speed = 0;
+function get_speed(){
+  speed += 0.02;
+  //console.log((Math.sin(speed) + 1))
+  return ((Math.sin(speed) + 1.5)*0.01);
+}
+
+function animate() {
+  // setInterval(() => {
+    
+  // }, 100);
+  //plane.rotation.x -= 0.02;
+    
+  
+  plane.rotation.y += get_speed();
+  plane.rotation.z += 0.02;
+    requestAnimationFrame(animate);
+  composer.render();
+}
+
+animate();
