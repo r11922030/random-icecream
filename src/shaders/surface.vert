@@ -8,6 +8,8 @@ uniform ivec3 uOctaves;
 uniform vec3 uLacunarity;
 uniform vec3 uGain;
 uniform float uHeight;
+uniform float uX;
+uniform float uY;
 uniform float uRandOffset;
 
 varying vec3 vVertex;
@@ -71,8 +73,8 @@ float fBm( vec2 p, int octaves, float lacunarity, float gain ) {
 
 void main() {
     vec3 p = position;
-
-    if ( p.x < 256. && p.x > -256. && p.y < 256. && p.y > -256. ) {
+    vec3 scale = vec3(1.0, 1.0, 1.0);
+    if ( p.x * p.x + p.y * p.y < 255.9 * 255.9) {
       float f = fBm( uv * uNoiseFrequency.x, uOctaves.x, uLacunarity.x, uGain.x );
 
       if ( uSecondLayer )
@@ -82,9 +84,8 @@ void main() {
         f = fBm( vec2( uv.x * f, uv.y * f ) * uNoiseFrequency.z + vec2( 1.4, 3.221 ), uOctaves.z, uLacunarity.z, uGain.z );
 
         p.z = f * uHeight;
+        // scale = vec3(0.005*uHeight, 0.005*uHeight, 0.005*uHeight);
     }
-
     vVertex = ( modelViewMatrix * vec4( p, 1. ) ).xyz;
-
-    gl_Position = projectionMatrix * modelViewMatrix * vec4( p, 1. );
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( p*scale, 1. );
 }

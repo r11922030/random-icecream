@@ -51,9 +51,11 @@ camera.position.z = 256;
 camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 // Plane geometry
-const planeSize = 512;
+const planeSize = 256;
 const planeSegments = 400;
-const geometry = new THREE.PlaneBufferGeometry(planeSize, planeSize, planeSegments, planeSegments);
+// const geometry = new THREE.PlaneBufferGeometry(planeSize, planeSize, planeSegments, planeSegments);
+const geometry = new THREE.SphereGeometry(planeSize, planeSegments, planeSegments);
+// const geometry = new THREE.CircleBufferGeometry(planeSize, planeSegments)
 
 // Surface color
 let surfaceColor = hsl2rgb(colors[1][0], colors[1][1], colors[1][2]);
@@ -193,3 +195,17 @@ link.click();
 
 // Trigger capture
 fxpreview();
+
+function animate() {
+  // setInterval(() => {
+    
+  // }, 100);
+  plane.rotation.x -= 0.01;
+    plane.rotation.y -= 0.02;
+    plane.rotation.z -= 0.03;
+    requestAnimationFrame(animate);
+  composer.render();
+}
+
+animate();
+
