@@ -197,6 +197,16 @@ link.click();
 // Trigger capture
 fxpreview();
 
-const context = new AudioContext();
-var patch;
-patch = Pd.loadPatch(ambientPatch);
+// Pd's ambient music part
+function initializeAmbient() {
+  const context = new AudioContext();
+  const patch = Pd.loadPatch(ambientPatch);
+
+  Pd.send('initialize', ['bang']);
+  Pd.send('chord', [FXRand.int(0, 1)]);
+  Pd.send('p1', [FXRand.int(0, 1)]);
+  Pd.send('p2', [FXRand.int(0, 1)]);
+  Pd.send('start', ['bang']);
+}
+
+initializeAmbient();
