@@ -214,10 +214,10 @@ document.addEventListener('click', (event) => {
 function initializeAmbient() {
   Pd.start();
   Pd.send('initialize', ['bang']);
-  Pd.send('chord', [0]);
-  // Pd.send('p1', [FXRand.int(0, 1)]);
-  // Pd.send('p2', [FXRand.int(0, 1)]);
-  // Pd.send('start', ['bang']);
+  Pd.send('chord', [ FXRand.int(0, 1) ]);
+  Pd.send('p1', [ FXRand.int(0, 1) ]);
+  Pd.send('p2', [ FXRand.int(0, 1) ]);
+  Pd.send('start', ['bang']);
 }
 
 initializeAmbient();
