@@ -32,8 +32,8 @@ let colors = generateColorPalette(features);
 const scene = new THREE.Scene();
 
 // Background
-// let backgroundColor = hsl2rgb(colors[0][0], colors[0][1], colors[0][2]);
-// scene.background = new THREE.Color(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
+let backgroundColor = hsl2rgb(colors[0][0], colors[0][1], colors[0][2]);
+scene.background = new THREE.Color(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
 
 // Camera
 const near = 0.1;
@@ -65,16 +65,24 @@ var stars = [];
 function addSphere(){
 
   // The loop will move from z position of -1000 to z position 1000, adding a random particle at each position. 
-  for ( var z= -1000; z < 1000; z+=20 ) {
+  for ( var z= -1000; z < 1000; z+=5 ) {
 
       // Make a sphere (exactly the same as before). 
-      var geometry   = new THREE.SphereGeometry(0.5, 32, 32)
+      var size = Math.random() * (2.0 - 1.0) + 0.5;
+      var geometry   = new THREE.SphereGeometry(size, 32, 32)
       var material = new THREE.MeshBasicMaterial( {color: 0xffffff} );
       var sphere = new THREE.Mesh(geometry, material)
 
       // This time we give the sphere random x and y positions between -500 and 500
-      sphere.position.x = Math.random() * 1000 - 500;
-      sphere.position.y = Math.random() * 1000 - 500;
+      // sphere.position.x = Math.random() * 1000 - 500;
+      var coin = Math.random();
+      if (coin > 0.5){
+        sphere.position.x = Math.random()*(256)+ 400;    
+      } else {
+        sphere.position.x = Math.random()* -600;    
+      }
+      sphere.position.y = Math.random() * -512;
+      
 
       // Then set the z position to where it is in the loop (distance of camera)
       sphere.position.z = z;
@@ -107,18 +115,20 @@ function animateStars() {
 
 }
 
-function render() {
-  //get the frame
-  requestAnimationFrame( render );
+// function render() {
+//   //get the frame
+//   requestAnimationFrame( render );
 
-  //render the scene
-  renderer.render( scene, camera );
-      animateStars();
+//   //render the scene
+//   renderer.render( scene, camera );
+//   animateStars();
 
-}
+// }
 
 addSphere();
 // render();
+// renderer.render( scene, camera );
+// animateStars();
 
 const generateParams = () => {
   let uNoiseFrequency, uOctaves, uLacunarity, uGain, uHeight, uSecondLayer, uThirdLayer;
