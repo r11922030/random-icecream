@@ -1,10 +1,6 @@
-# Generative terrain NFT for fxhash.xyz, with threejs
-This is the full code for the tutorial released on [generativehut.com](https://www.generativehut.com/post/generative-terrain-nfts-for-fxhash-in-three-js).
-
-Tutorial text is also available at `./tutorial/TUTORIAL.md` in a markdown format.  
-
-## Project on fxhash
-The project is released under this [link](). 256 edition, for 5 tezos. 90% of the proceedings (including secondary shares/royalties) go to [this](https://tzkt.io/KT1DWnLiUkNtAQDErXxudFEH63JC6mqg3HEx/) donation contract, which was setup by the fxhash and the [Versum](https://versum.xyz/) team. This contract splits the received funds between different charities ([Save The Children](https://thegivingblock.com/donate/save-the-children/), [Direct Relief](https://thegivingblock.com/donate/direct-relief/), etc.). You can read more on the contract [here](https://github.com/teia-community/teia-docs/wiki/Ukranian-Fundraising). If you want to support a good cause, mint one for yourself!:)
+# Random Icecream
+Live demo : http://140.112.29.232:8080/
+(Backup : linux1.csie.ntu.edu.tw:8080)
 
 # How to use
 
