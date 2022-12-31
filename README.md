@@ -1,7 +1,7 @@
 # Random Icecream
 Live demo : http://140.112.29.232:8080/
 
-(Backup : linux1.csie.ntu.edu.tw:8080)
+(Backup : http://linux1.csie.ntu.edu.tw:8080/)
 
 # How to use
 
