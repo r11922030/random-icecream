@@ -13,7 +13,7 @@ You will need to have [nodejs](https://nodejs.org/) installed.
 
 Clone the repository on your machine and move to the directory
 ```sh
-$ git clone https://github.com/danielpetho/terrestrial.git your_folder && cd your_folder
+$ git clone https://github.com/r11922030/random-icecream your_folder && cd your_folder
 ```
 
 Install the packages required for the local environment
